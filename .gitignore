@@ -1,0 +1,12 @@
+.snakemake
+.git
+Snakefile
+config.yaml
+blast
+fasta
+fastq
+genome
+sam
+table
+TE
+

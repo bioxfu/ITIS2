@@ -1,0 +1,35 @@
+species: rice
+
+seq_info:
+  type: DNA-Seq
+  stranded: no
+  mode: PE
+  replicate: 1
+
+path: /home/xfu/Git/ITIS2/fastq/
+
+samples:
+  - A
+  - B
+  - C
+
+TE: mping
+
+genome: ref.fa   
+
+cpu: 8
+
+library_insertion_length: 300
+
+bases_lost: 10
+
+window_size: 150
+
+filter_string: /t=3/TS=1/TE=1/
+
+NB_cutoff: 100
+
+MQ_cutoff: 1
+
+DP_cutoff: 2,200
+
