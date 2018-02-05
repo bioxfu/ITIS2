@@ -51,21 +51,22 @@ rule bwa_index:
 
 rule align_ori_reads:
 	input:
-		R1 = config['path']+'{sample}_R1.fastq',
-		R2 = config['path']+'{sample}_R2.fastq',
+		R1 = config['path']+'{sample}_R1.fastq.gz',
+		R2 = config['path']+'{sample}_R2.fastq.gz',
 		genome = 'genome/ref_and_{TE}.fa',
 		genome_idx = 'genome/ref_and_{TE}.fa.bwt'
 	output:
-		bam = 'sam/{sample}_all_reads_aln_ref_and_{TE}.sort.bam'
+		bam = 'sam/{sample}_all_reads_aln_ref_and_{TE}.sort.bam',
+		prefix = 'sam/{sample}_all_reads_aln_ref_and_{TE}.sort'
 	params:
 		cpu = config['cpu']
 	shell:
-		'bwa mem -T 20 -t {params.cpu} {input.genome} {input.R1} {input.R2} 2>/dev/null | samtools view -@ 2 -buSh - | samtools sort -@ 2 -f - {output}; samtools index {output}'
+		'touch {output.prefix}; bwa mem -T 20 -t {params.cpu} {input.genome} {input.R1} {input.R2} 2>/dev/null | samtools view -@ 2 -buSh - | samtools sort -@ 2 - {output.prefix}; samtools index {output.bam}; '
 
 rule reads_aligned_to_TE:
 	input:
-		R1 = config['path']+'{sample}_R1.fastq',
-		R2 = config['path']+'{sample}_R2.fastq',
+		R1 = config['path']+'{sample}_R1.fastq.gz',
+		R2 = config['path']+'{sample}_R2.fastq.gz',
 		TE = 'TE/'+config['TE']+'.fa',
 		TE_idx = 'TE/'+config['TE']+'.fa.bwt'		
 	output:

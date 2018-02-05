@@ -1,4 +1,4 @@
-species: rice
+species: arabidopsis
 
 seq_info:
   type: DNA-Seq
@@ -6,18 +6,16 @@ seq_info:
   mode: PE
   replicate: 1
 
-path: /home/xfu/Git/ITIS2/fastq/
+path: /home/xfu/Project/ZHM/ITIS2/fastq/
 
 samples:
-  - A
-  - B
-  - C
+  - 14E4
 
-TE: mping
+TE: pBIN-pROK2
 
-genome: ref.fa   
+genome: tair10.fa   
 
-cpu: 8
+cpu: 30
 
 library_insertion_length: 300
 
